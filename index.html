@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YUSEA · Young Urbanists of Southeast Asia</title>
+<meta name="description" content="A pan-Southeast Asian network of young people interested in Southeast Asian urbanism.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --blue:#0066af; --blue-dark:#00558f; --red:#ff033b; --red-dark:#d9002f; --orange:#f48700;
+  --ink:#241e21; --muted:#625e63; --line:#dce3e8; --sky:#eaf4fb; --paper:#f8f9fa;
+  --shadow:0 12px 40px rgba(22,53,75,.11);
+  --px:64px; --nav-h:104px;
+  --display:'Chakra Petch',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+section,footer{scroll-margin-top:var(--nav-h)}
+.wrap{max-width:1440px;margin:0 auto;padding-inline:var(--px)}
+
+/* ---------- shared bits ---------- */
+.eyebrow{display:flex;align-items:center;gap:10px;font:700 11px/normal var(--body);color:var(--blue);letter-spacing:.02em}
+.eyebrow i{width:8px;height:8px;background:var(--blue);flex:none}
+.eyebrow.red i{background:var(--red)}
+.eyebrow.light{color:#fff}
+.heading{display:flex;flex-direction:column;gap:12px}
+.heading h2{font:700 34px/1.15 var(--display)}
+.heading p{font:400 16px/1.65 var(--body);color:var(--muted);max-width:760px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;height:56px;padding:0 24px;font:600 15px/normal var(--body);white-space:nowrap;transition:background .2s,color .2s,transform .2s,box-shadow .2s}
+.btn img{width:20px;height:20px;transition:transform .2s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-dark)}
+.btn-primary:hover img{transform:translate(3px,-3px)}
+.btn-outline{background:#fff;color:var(--blue);border:1.2px solid var(--blue)}
+.btn-outline:hover{background:var(--blue);color:#fff}
+.pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font:600 14px/normal var(--body);white-space:nowrap;transition:background .2s,color .2s,transform .2s}
+.pill-red{height:44px;padding:0 22px;background:var(--red);color:#fff}
+.pill-red:hover{background:var(--red-dark);transform:translateY(-1px)}
+.pill-white{height:44px;padding:0 22px;background:#fff;color:var(--ink)}
+.pill-white:hover{background:var(--ink);color:#fff}
+.pill-ghost{padding:10px 16px;background:#fff;color:var(--blue);border:1.2px solid var(--blue)}
+.pill-ghost:hover{background:var(--blue);color:#fff}
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.js .reveal{opacity:0;transform:translateY(18px)}
+.js .reveal.in{opacity:1;transform:none}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* ---------- navigation ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .25s}
+.site-header.scrolled{box-shadow:0 6px 24px rgba(22,53,75,.08)}
+.nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:5px;font:700 34px/normal var(--display);color:var(--blue)}
+.brand::after{content:"";width:7px;height:7px;background:var(--red);flex:none}
+.nav-links{display:flex;align-items:center;gap:28px;font:500 14px/normal var(--body)}
+.nav-links a{position:relative;padding:6px 0;white-space:nowrap}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;width:44px;height:44px;align-items:center;justify-content:center}
+.menu-btn img{width:24px;height:24px}
+.mobile-menu{display:none}
+
+/* ---------- hero ---------- */
+.hero{display:flex;gap:48px;align-items:flex-start;padding-block:48px}
+.intro{flex:0 0 48.8%;max-width:640px;display:flex;flex-direction:column;gap:44px;padding-top:16px}
+.hero-copy{display:flex;flex-direction:column;gap:30px}
+.hero-copy h1{font:700 54px/1.12 var(--display)}
+.hero-copy h1 em{font-style:normal;color:var(--blue)}
+.hero-copy p{font:400 18px/1.65 var(--body);color:var(--muted);max-width:530px}
+.hero-actions{display:flex;gap:12px}
+.regional{display:flex;flex-direction:column;gap:12px}
+.stripe{display:flex;width:64px;height:3px}
+.stripe span{flex:1}
+.stripe span:nth-child(1){background:var(--blue)}
+.stripe span:nth-child(2){background:var(--red)}
+.stripe span:nth-child(3){background:var(--orange)}
+.regional p{font:400 11px/1.6 var(--body);color:var(--muted);white-space:pre-wrap}
+.m-only{display:none}
+.hero-visual{flex:1;min-width:0;height:740px;position:relative}
+.city{position:relative;height:650px;background:var(--sky);overflow:hidden}
+.city .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.city .wash{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,102,175,.6) 0%,rgba(0,102,175,0) 55%,rgba(244,135,0,.2) 100%)}
+.city .cut{position:absolute;left:0;top:0;width:90px;height:90px}
+.city .overlay{position:absolute;right:0;top:0;width:200px;height:270px}
+.city .caption{position:absolute;right:24px;top:28px;display:flex;align-items:center;gap:8px;background:#fff;padding:8px 12px;font:600 11px/normal var(--body);color:var(--blue);white-space:nowrap}
+.city .caption img{width:14px;height:14px}
+.float{position:absolute;left:-32px;right:24px;top:490px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;display:flex;flex-direction:column;gap:18px;transition:transform .3s,box-shadow .3s}
+.float:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(22,53,75,.16)}
+.card-top{display:flex;align-items:center;justify-content:space-between}
+.label{display:flex;align-items:center;gap:8px;font:700 10px/normal var(--body);color:var(--blue)}
+.label i{width:7px;height:7px;flex:none}
+.label .r{background:var(--red)} .label .o{background:var(--orange)}
+.card-top img{width:20px;height:20px;transition:transform .2s}
+.float:hover .card-top img{transform:translate(3px,-3px)}
+.float h3{font:600 28px/1.15 var(--display)}
+.float p{font:400 14px/1.6 var(--body);color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{padding:8px 12px;font:600 12px/normal var(--body);transition:transform .2s}
+.tags span:hover{transform:translateY(-2px)}
+.tags .t1{background:var(--sky)} .tags .t2{background:#fff0f3} .tags .t3{background:#fff3e4}
+.corner{position:absolute;right:0;bottom:0;width:24px;height:24px;background:var(--orange)}
+
+/* ---------- mission ---------- */
+.mission{background:var(--orange);padding-block:72px}
+.mission p{max-width:1040px;margin:0 auto;text-align:center;font:700 40px/1.25 var(--display)}
+
+/* ---------- numbers ---------- */
+.numbers{background:var(--ink);color:#fff;padding-block:72px}
+.numbers .wrap{display:flex;flex-direction:column;gap:40px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:background .25s,transform .25s}
+.stat:hover{background:rgba(255,255,255,.09);transform:translateY(-4px)}
+.stat strong{font:700 48px/1.05 var(--display)}
+.stat span{font:400 14px/1.6 var(--body)}
+
+/* ---------- programs ---------- */
+.programs{padding-block:72px}
+.programs .wrap{display:flex;flex-direction:column;gap:40px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px;display:flex;flex-direction:column;gap:18px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(22,53,75,.16);border-color:var(--blue)}
+.card h3{font:600 24px/1.15 var(--display)}
+.card p{font:400 14px/1.6 var(--body);color:var(--muted)}
+.card-link{display:inline-flex;align-items:center;gap:6px;margin-top:auto;font:600 14px/normal var(--body);color:var(--blue)}
+.card-link img{width:20px;height:20px;transition:transform .2s}
+.card:hover .card-link img{transform:translate(4px,-4px)}
+
+/* ---------- knowledge ---------- */
+.knowledge{background:var(--paper);padding-block:72px}
+.knowledge .wrap{display:flex;flex-direction:column;gap:40px}
+.table{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.row{display:grid;grid-template-columns:1fr 220px 120px 120px;gap:24px;align-items:center;padding:20px 24px;transition:background .2s}
+.row.head{background:var(--sky);color:var(--blue);font:700 11px/normal var(--body)}
+.row:not(.head){border-top:1px solid var(--line)}
+.row:not(.head):hover{background:#f4f9fd}
+.row h3{font:600 20px/1.2 var(--display)}
+.row .cat,.row .yr{font:400 14px/1.6 var(--body);color:var(--muted)}
+.row .act{display:flex;justify-content:flex-end}
+.cta{background:#0066b0;color:#fff;border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.cta h2{font:700 34px/1.15 var(--display);max-width:760px}
+
+/* ---------- chapters ---------- */
+.chapters{padding-top:72px}
+.chapters .wrap{display:flex;flex-direction:column;gap:32px}
+.chapter-list{display:flex;flex-wrap:wrap;gap:32px 40px}
+.chapter{width:296px;height:271px;background:#f6f6f6;border-radius:16px;position:relative}
+.photo-box{position:relative;height:212px;border-radius:16px;overflow:hidden;background:#dfe5ea}
+.photo-box img{position:absolute;transition:transform .5s ease}
+.photo-box img.fill{inset:0;width:100%;height:100%;object-fit:cover}
+.photo-box img.crop{width:123.76%;height:130.12%;max-width:none;left:var(--l);top:var(--t)}
+.chapter:hover .photo-box img{transform:scale(1.06)}
+.badge{position:absolute;top:16px;right:16px;height:24px;padding:0 11px 0 10px;display:flex;align-items:center;border-radius:16px;background:var(--red);color:#fff;font:700 11px/normal var(--body);z-index:2}
+.badge.soon{background:#040000}
+.chapter .meta{position:absolute;left:14px;top:228px;display:flex;align-items:center;gap:16px;height:24px}
+.chapter .flag{width:48px;height:24px;object-fit:contain;flex:none}
+.chapter .flag.cover{object-fit:cover;border-radius:1px}
+.chapter h3{font:700 20px/1.05 var(--display)}
+.chapters-note{font:400 16px/1.65 var(--body);color:var(--muted);max-width:760px}
+.chapters-note a{color:var(--blue);font-weight:600;border-bottom:1px solid currentColor}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--ink);color:#fff;margin-top:72px;padding-block:56px 32px}
+.site-footer .wrap{display:flex;flex-direction:column;gap:40px}
+.foot-top{display:flex;gap:48px}
+.foot-brand{width:320px;display:flex;flex-direction:column;gap:16px;flex:none}
+.foot-brand .brand{color:#fff}
+.foot-brand p{font:400 14px/1.6 var(--body);color:rgba(255,255,255,.8)}
+.foot-brand small{font:700 12px/normal var(--body);color:rgba(255,255,255,.6)}
+.foot-col{display:flex;flex-direction:column;gap:12px;font:600 14px/normal var(--body)}
+.foot-col.links{width:220px;flex:none}
+.foot-col.contact{flex:1}
+.foot-col a{width:fit-content;transition:color .2s,transform .2s}
+.foot-col a:hover{color:var(--orange);transform:translateX(3px)}
+.divider{height:1px;background:rgba(255,255,255,.1)}
+.copy{font:400 12px/1.6 var(--body);color:rgba(255,255,255,.6)}
+
+/* ---------- responsive: tablet & mobile ---------- */
+@media (max-width:980px){
+  :root{--px:20px;--nav-h:80px}
+  .brand{font-size:27px}
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .mobile-menu{display:block;position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 16px 30px rgba(22,53,75,.1);max-height:0;overflow:hidden;visibility:hidden;transition:max-height .3s ease,visibility .3s}
+  .mobile-menu.open{max-height:360px;visibility:visible}
+  .mobile-menu a{display:block;padding:16px 20px;font:500 15px/normal var(--body);border-top:1px solid var(--line)}
+  .mobile-menu a:hover{background:var(--sky);color:var(--blue)}
+
+  .hero{flex-direction:column;gap:32px;padding-block:32px;align-items:stretch}
+  .intro{display:contents}
+  .hero-copy{order:1;padding-inline:var(--px);gap:24px}
+  .hero-copy h1{font-size:34px}
+  .hero-copy p{font-size:16px}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn{width:100%}
+  .hero-visual{order:2;height:auto;padding:264px var(--px) 0;flex:none}
+  .city{position:absolute;left:0;right:0;top:0;height:340px}
+  .city .cut{width:65px;height:65px}
+  .city .overlay{width:110px;height:150px}
+  .city .caption{right:16px;top:20px}
+  .float{position:relative;left:auto;right:auto;top:auto;padding:24px}
+  .float h3{font-size:25px}
+  .corner{display:none}
+  .regional{order:3;padding-inline:var(--px)}
+  .stripe{width:48px}
+  .d-only{display:none}
+  .m-only{display:inline}
+
+  .mission{padding-block:32px}
+  .mission p{font-size:28px}
+  .numbers{padding-block:32px}
+  .numbers .wrap{gap:24px}
+  .heading h2{font-size:28px}
+  .programs .heading h2,.knowledge .heading h2,.chapters .heading h2{font-size:34px}
+  .stats{grid-template-columns:1fr 1fr;gap:16px}
+  .stat{padding:20px}
+  .stat strong{font-size:40px}
+  .programs,.knowledge{padding-block:72px}
+  .programs .wrap,.knowledge .wrap{gap:32px}
+  .cards{grid-template-columns:1fr}
+  .table{background:none;border:0;box-shadow:none;border-radius:0;display:flex;flex-direction:column;gap:16px;overflow:visible}
+  .row.head{display:none}
+  .row{background:#fff;border:1px solid var(--line)!important;border-radius:16px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:16px}
+  .row h3{grid-column:1/-1}
+  .row .act{grid-column:1/-1;justify-content:flex-start;order:3}
+  .row .cat{order:1} .row .yr{order:2;text-align:right}
+  .cta{flex-direction:column;align-items:flex-start;gap:16px;padding:32px 24px}
+  .cta h2{font-size:28px}
+  .chapters{padding-top:72px}
+  .chapters .wrap{gap:32px}
+  .chapter-list{flex-direction:column;align-items:center;gap:24px}
+  .site-footer{margin-top:72px}
+  .foot-top{flex-direction:column;gap:48px}
+  .foot-brand{width:100%}
+  .foot-col.links{width:auto}
+}
+@media (min-width:600px) and (max-width:980px){
+  .chapter-list{flex-direction:row;justify-content:center}
+}
+@media (min-width:981px){
+  .chapter-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:32px 24px}
+  .chapter{width:auto}
+}
+@media (max-width:420px){
+  .stats{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="YUSEA home">YUSEA</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About Us</a>
+      <a href="#programs">Flagship Programs</a>
+      <a href="#knowledge">Knowledge Portal</a>
+      <a href="#chapters">Chapters</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="pill pill-red" href="#contact">Join Network</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileMenu">
+        <img src="assets/menu.svg" alt="" width="24" height="24">
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#about">About Us</a>
+    <a href="#programs">Flagship Programs</a>
+    <a href="#knowledge">Knowledge Portal</a>
+    <a href="#chapters">Chapters</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="about">
+    <div class="wrap hero">
+      <div class="intro">
+        <div class="hero-copy">
+          <div class="eyebrow red"><i></i>YOUNG URBANISTS OF SOUTHEAST ASIA</div>
+          <h1>A pan-Southeast Asian network of young people interested in <em>Southeast Asian urbanism.</em></h1>
+          <p>Connecting youth across sectors to co-create sustainable urban solutions.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#programs">Explore Programs <img src="assets/arrow-white.svg" alt="" width="20" height="20"></a>
+            <a class="btn btn-outline" href="#about">Our Vision &amp; Mission</a>
+          </div>
+        </div>
+        <div class="regional">
+          <div class="stripe"><span></span><span></span><span></span></div>
+          <p>Philippines  /  Indonesia  /  Singapore  /  <span class="d-only">Viet nam</span><span class="m-only">Viet Nam</span></p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="city">
+          <picture>
+            <img class="photo" src="assets/hero-desktop.png" alt="Singapore skyline and urban fabric">
+          </picture>
+          <div class="wash"></div>
+          <picture>
+            <source media="(max-width:980px)" srcset="assets/cut-mobile.svg">
+            <img class="cut" src="assets/cut-desktop.svg" alt="">
+          </picture>
+          <picture>
+            <source media="(max-width:980px)" srcset="assets/overlay-mobile.svg">
+            <img class="overlay" src="assets/overlay-desktop.svg" alt="">
+          </picture>
+          <div class="caption"><img src="assets/map-pin.svg" alt="">Singapore, Southeast Asia</div>
+        </div>
+        <article class="float">
+          <div class="card-top">
+            <div class="label"><i class="o"></i>IDEAS INTO ACTION</div>
+            <img src="assets/arrow-card.svg" alt="" width="20" height="20">
+          </div>
+          <h3>Better cities start with us.</h3>
+          <p>Connect, co-learn and co-create across sectors, generations and borders.</p>
+          <div class="tags"><span class="t1">Mentorship</span><span class="t2">Symposium</span><span class="t3">URBANovation</span></div>
+        </article>
+        <div class="corner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div class="wrap reveal">
+      <p>We work inside cities, alongside the people in local governments turning resilience and urban priorities into action.</p>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="numbers" id="impact">
+    <div class="wrap">
+      <div class="heading reveal">
+        <div class="eyebrow light"><i></i>BY THE NUMBERS</div>
+        <h2>Impact across Southeast Asia</h2>
+      </div>
+      <div class="stats">
+        <div class="stat reveal"><strong data-count="1000" data-suffix="+">1000+</strong><span>Young urbanists engaged across Asia-Pacific</span></div>
+        <div class="stat reveal"><strong data-count="27" data-suffix="+">27+</strong><span>Activities across programs, research &amp; policy</span></div>
+        <div class="stat reveal"><strong data-count="30" data-suffix="+">30+</strong><span>Institutional partners (UN agencies, universities)</span></div>
+        <div class="stat reveal"><strong data-count="12" data-suffix="">12</strong><span>Countries &amp; territories engaged</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="programs" id="programs">
+    <div class="wrap">
+      <div class="heading reveal">
+        <div class="eyebrow"><i></i>FLAGSHIP PROGRAMS</div>
+        <h2>Where Ideas Meet Action</h2>
+        <p>Explore YUSEA's core initiatives bridging youth and city-makers across Southeast Asia.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="label"><i class="r"></i>Professional Development</div>
+          <h3>YUSEA Mentorship Programme</h3>
+          <p>5-month cross-border mentorship pairing emerging young urbanists with seasoned SEA leaders.</p>
+          <a class="card-link" href="#programs">Learn More <img src="assets/arrow-blue.svg" alt="" width="20" height="20"></a>
+        </article>
+        <article class="card reveal">
+          <div class="label"><i class="o"></i>Academic Exchange</div>
+          <h3>Annual Symposium on Urban Studies</h3>
+          <p>Region's first student-led symposium convened in Hanoi &amp; Ho Chi Minh City.</p>
+          <a class="card-link" href="#programs">Learn More <img src="assets/arrow-blue.svg" alt="" width="20" height="20"></a>
+        </article>
+        <article class="card reveal">
+          <div class="label"><i class="r"></i>Action Research</div>
+          <h3>URBANovation Podcast &amp; Workshops</h3>
+          <p>Public communication-action research empowering youth to solve urban challenges.</p>
+          <a class="card-link" href="#programs">Learn More <img src="assets/arrow-blue.svg" alt="" width="20" height="20"></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- KNOWLEDGE PORTAL -->
+  <section class="knowledge" id="knowledge">
+    <div class="wrap">
+      <div class="heading reveal">
+        <div class="eyebrow"><i></i>KNOWLEDGE PORTAL</div>
+        <h2>A living record of youth-led urbanism in Southeast Asia</h2>
+        <p>Documenting research, policy engagement, and capacity building outputs across Asia-Pacific.</p>
+      </div>
+      <div class="table reveal" role="table" aria-label="Knowledge archive">
+        <div class="row head" role="row"><span role="columnheader">TITLE</span><span role="columnheader">CATEGORY</span><span role="columnheader">YEAR</span><span role="columnheader" style="text-align:right">ACTION</span></div>
+        <div class="row" role="row"><h3>Wrapped in a Banana Leaf Digital Anthology</h3><span class="cat">Publication</span><span class="yr">2025</span><div class="act"><a class="pill pill-ghost" href="#knowledge">Read</a></div></div>
+        <div class="row" role="row"><h3>URBANovation Podcast Season 1</h3><span class="cat">Podcast Series</span><span class="yr">2024</span><div class="act"><a class="pill pill-ghost" href="#knowledge">Listen</a></div></div>
+        <div class="row" role="row"><h3>Urban Co-Creation Framework</h3><span class="cat">Academic Paper</span><span class="yr">2025</span><div class="act"><a class="pill pill-ghost" href="#knowledge">Download</a></div></div>
+      </div>
+      <div class="cta reveal">
+        <h2>Partner with YUSEA on Urban Research &amp; Policy</h2>
+        <a class="pill pill-white" href="#contact">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTERS -->
+  <section class="chapters" id="chapters">
+    <div class="wrap">
+      <div class="heading reveal">
+        <div class="eyebrow"><i></i>REGIONAL CHAPTERS</div>
+        <h2>Our Regional Chapters</h2>
+      </div>
+      <div class="chapter-list">
+        <article class="chapter reveal">
+          <div class="photo-box">
+            <img class="fill" src="assets/ph-city.png" alt="Philippines chapter">
+            <span class="badge">Active</span>
+          </div>
+          <div class="meta"><img class="flag cover" src="assets/flag-ph.png" alt=""><h3>Philippines</h3></div>
+        </article>
+        <article class="chapter reveal">
+          <div class="photo-box">
+            <img class="fill" src="assets/sg-city.png" alt="Singapore chapter">
+            <span class="badge">Active</span>
+          </div>
+          <div class="meta"><img class="flag" src="assets/flag-sg.png" alt=""><h3>Singapore</h3></div>
+        </article>
+        <article class="chapter reveal">
+          <div class="photo-box">
+            <img class="fill" src="assets/id-city.png" alt="Indonesia chapter">
+            <span class="badge">Active</span>
+          </div>
+          <div class="meta"><img class="flag" src="assets/flag-id.png" alt=""><h3>Indonesia</h3></div>
+        </article>
+        <article class="chapter reveal">
+          <div class="photo-box">
+            <img class="fill" src="assets/vn-city.png" alt="Viet Nam chapter">
+            <span class="badge">Active</span>
+          </div>
+          <div class="meta"><img class="flag" src="assets/flag-vn.png" alt=""><h3>Viet Nam</h3></div>
+        </article>
+        <article class="chapter reveal">
+          <div class="photo-box">
+            <img class="fill" src="assets/th-city.png" alt="Thailand chapter">
+            <span class="badge soon">Coming Soon</span>
+          </div>
+          <div class="meta"><img class="flag" src="assets/flag-th.png" alt=""><h3>Thailand</h3></div>
+        </article>
+      </div>
+      <p class="chapters-note">Interested in bringing YUSEA to your city? Reach out to start a local chapter.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">YUSEA</div>
+        <p>Young Urbanists of Southeast Asia</p>
+        <small>YUSEA.org</small>
+      </div>
+      <div class="foot-col links">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#knowledge">Knowledge Portal</a>
+        <a href="#chapters">Chapters</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col contact">
+        <a href="#contact">Email</a>
+        <a href="#contact">Instagram @yusea.insights</a>
+        <a href="#contact">Substack</a>
+        <a href="#contact">LinkedIn</a>
+        <a href="#contact">X/Twitter</a>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="copy">Copyright © 2026 YUSEA. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var header=document.querySelector('.site-header');
+  var btn=document.getElementById('menuBtn');
+  var menu=document.getElementById('mobileMenu');
+
+  function setMenu(open){
+    menu.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',String(open));
+    btn.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  }
+  btn.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+  document.addEventListener('click',function(e){if(!header.contains(e.target))setMenu(false)});
+  window.addEventListener('resize',function(){if(window.innerWidth>980)setMenu(false)});
+
+  function onScroll(){header.classList.toggle('scrolled',window.scrollY>8)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // hide broken images gracefully (before assets are downloaded)
+  document.querySelectorAll('img').forEach(function(img){
+    img.addEventListener('error',function(){img.style.visibility='hidden'});
+  });
+
+  // reveal on scroll + count-up
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el){
+    var target=parseInt(el.dataset.count,10),suffix=el.dataset.suffix||'';
+    if(reduce||isNaN(target)){el.textContent=target+suffix;return}
+    var start=null,dur=1200;
+    function step(t){
+      if(start===null)start=t;
+      var p=Math.min((t-start)/dur,1),eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased)+suffix;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){el.classList.add('in')});return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('in');
+      var n=en.target.querySelector('[data-count]');
+      if(n)countUp(n);
+      io.unobserve(en.target);
+    });
+  },{threshold:.15});
+  items.forEach(function(el,i){
+    el.style.transitionDelay=(i%4)*70+'ms';
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
